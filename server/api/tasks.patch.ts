@@ -1,23 +1,21 @@
-import { defineEventHandler, getQuery } from "h3";
+import { createError, defineEventHandler, getQuery } from "h3";
 
 type TaskUpdateResponse = {
   id: string;
   title: string;
 };
 
-type ApiErrorResponse = {
-  code: "INVALID_TITLE";
-  message: string;
-};
-
-export default defineEventHandler((event): TaskUpdateResponse | ApiErrorResponse => {
+export default defineEventHandler((event): TaskUpdateResponse => {
   const { title } = getQuery(event);
 
   if (typeof title !== "string" || title.trim().length === 0) {
-    return {
-      code: "INVALID_TITLE",
-      message: "titleは空でない文字列で指定してください"
-    };
+    throw createError({
+      statusCode: 400,
+      statusMessage: "Invalid title",
+      data: {
+        code: "INVALID_TITLE"
+      }
+    });
   }
 
   return {
