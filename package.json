@@ -11,6 +11,9 @@
     "clean": "rm -rf dist .nuxt .output",
     "prepare": "nuxt prepare",
     "typecheck": "nuxt typecheck",
+    "compile:test": "tsc -p tsconfig.test.json",
+    "test": "npm run clean && npm run compile:test && node --test dist/test/**/*.test.js",
+    "test:chapter-01": "npm run clean && npm run compile:test && node --test --test-name-pattern='第01章' dist/test/**/*.test.js",
     "build": "nuxt build"
   },
   "dependencies": {
