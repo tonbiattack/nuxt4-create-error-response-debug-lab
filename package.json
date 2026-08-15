@@ -14,7 +14,8 @@
     "compile:test": "tsc -p tsconfig.test.json",
     "test": "npm run clean && npm run compile:test && node --test dist/test/**/*.test.js",
     "test:chapter-01": "npm run clean && npm run compile:test && node --test --test-name-pattern='第01章' dist/test/**/*.test.js",
-    "build": "nuxt build"
+    "build": "nuxt build",
+    "verify": "bash scripts/verify-nuxt4-create-error-lab.sh ."
   },
   "dependencies": {
     "nuxt": "^4.5.2",
@@ -23,6 +24,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.10.0",
-    "typescript": "^5.7.0"
+    "typescript": "^5.7.0",
+    "vue-tsc": "^3.3.10"
   }
 }
